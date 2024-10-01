@@ -7,8 +7,14 @@ environment:
   sdk: ^3.5.1
 
 dependencies:
+  advertising_id: ^2.7.1
+  device_info_plus: ^10.1.2
   flutter:
     sdk: flutter
+  fluttertoast: ^8.2.8
+  google_sign_in: ^6.2.1
+  http: ^1.2.2
+  package_info_plus: ^8.0.2
   shared_preferences: ^2.3.2
 
 dev_dependencies:

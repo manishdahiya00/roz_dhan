@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:roz_dhan/screens/splash_screen.dart';
 
 void main() async {
@@ -10,26 +9,19 @@ void main() async {
     DeviceOrientation.portraitUp,
   ]);
 
-  SharedPreferences prefs = await SharedPreferences.getInstance();
-  bool isLoggedIn = prefs.getBool('isLoggedIn') ?? false;
-
-  runApp(MyApp(isLoggedIn: isLoggedIn));
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  final bool isLoggedIn;
-
-  const MyApp({super.key, required this.isLoggedIn});
+  const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
+      title: 'Roz Dhan',
       theme: ThemeData(primarySwatch: Colors.blue),
-      home: const SplashScreen(
-        isLoggedIn: true,
-      ),
+      home: const SplashScreen(),
     );
   }
 }
