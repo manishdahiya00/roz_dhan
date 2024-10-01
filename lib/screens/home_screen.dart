@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:roz_dhan/color_theme.dart';
 import 'package:roz_dhan/screens/earn_money_screen.dart';
-import 'package:roz_dhan/screens/games_screen.dart';
+import 'package:roz_dhan/screens/history_screen.dart';
 import 'package:roz_dhan/screens/profile_screen.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -17,7 +17,7 @@ class _HomeScreenState extends State<HomeScreen> {
   final List<Widget> _pages = [
     const HomeContent(),
     const EarnMoneyScreen(),
-    const GamesScreen(),
+    const HistoryScreen(),
     const ProfileScreen(),
   ];
 
@@ -69,47 +69,6 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 }
 
-class TopBarWithSearch extends StatelessWidget {
-  const TopBarWithSearch({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          const Icon(Icons.language),
-          Expanded(
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 10),
-              child: TextField(
-                decoration: InputDecoration(
-                  filled: true,
-                  fillColor: Colors.grey[200],
-                  prefixIcon: const Icon(Icons.search),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(30),
-                    borderSide: BorderSide.none,
-                  ),
-                  hintText: "Search",
-                ),
-              ),
-            ),
-          ),
-          const Row(
-            children: [
-              Icon(Icons.notifications),
-              SizedBox(width: 10),
-              Icon(Icons.card_giftcard),
-            ],
-          ),
-        ],
-      ),
-    );
-  }
-}
-
 class IconHorizontalMenu extends StatelessWidget {
   const IconHorizontalMenu({super.key});
 
@@ -139,7 +98,7 @@ class IconHorizontalMenu extends StatelessWidget {
       children: [
         CircleAvatar(
           radius: 25,
-          backgroundColor: Colors.orange,
+          backgroundColor: ColorTheme.primaryColor,
           child: Icon(icon, color: Colors.white),
         ),
         const SizedBox(height: 8),
@@ -154,30 +113,42 @@ class HomeContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListView(
-      padding: const EdgeInsets.all(10),
-      children: const [
-        TopBarWithSearch(),
-        IconHorizontalMenu(),
-        Padding(
-          padding: EdgeInsets.all(10),
-          child: Text(
-            "For You",
-            style: TextStyle(
-              fontWeight: FontWeight.bold,
-              fontSize: 22,
-            ),
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: ColorTheme.primaryColor,
+        title: const Text(
+          "Roz Dhan",
+          style: TextStyle(
+            color: Colors.white,
+            fontSize: 20,
+            fontWeight: FontWeight.bold,
           ),
         ),
-        OfferCard(
-          title: "Get Free Fire Diamonds for FREE.",
-          image: "assets/images/main1.png",
-        ),
-        OfferCard(
-          title: "Best Tips to Earn Money Online",
-          image: "assets/images/main2.png",
-        ),
-      ],
+      ),
+      body: ListView(
+        padding: const EdgeInsets.all(10),
+        children: const [
+          IconHorizontalMenu(),
+          Padding(
+            padding: EdgeInsets.all(10),
+            child: Text(
+              "For You",
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 22,
+              ),
+            ),
+          ),
+          OfferCard(
+            title: "Get Free Fire Diamonds for FREE.",
+            image: "assets/images/main1.png",
+          ),
+          OfferCard(
+            title: "Best Tips to Earn Money Online",
+            image: "assets/images/main2.png",
+          ),
+        ],
+      ),
     );
   }
 }
