@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:roz_dhan/screens/history_screen.dart';
+import 'package:roz_dhan/screens/refer_earn_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class ProfileScreen extends StatefulWidget {
@@ -12,6 +14,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
   String name = "";
   String email = "";
   String referCode = "";
+  String amount = "";
+  String walletBalance = "";
   String image =
       "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.366icons.com%2Fmedia%2F01%2Fprofile-avatar-account-icon-16699.png&f=1&nofb=1&ipt=d32cd3665c36e518cb67ad59b645ffd3c73c005fe7dbc47f4292bfae4ff03b7d&ipo=images";
 
@@ -22,6 +26,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
       email = prefs.getString("email") ?? "";
       referCode = prefs.getString("referCode") ?? "";
       image = prefs.getString("image") ?? "";
+      walletBalance = prefs.getString("walletBalance") ?? "";
+      amount = (double.parse(prefs.getString("walletBalance") ?? "0") / 100)
+          .toString();
     });
   }
 
@@ -117,25 +124,25 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       spreadRadius: 1),
                 ],
               ),
-              child: const Column(
+              child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text('COINS',
+                  const Text('COINS',
                       style: TextStyle(fontSize: 12, color: Colors.grey)),
-                  SizedBox(height: 10),
+                  const SizedBox(height: 10),
                   Row(
                     children: [
-                      Icon(Icons.monetization_on,
+                      const Icon(Icons.monetization_on,
                           color: Colors.amber, size: 20),
-                      SizedBox(width: 5),
+                      const SizedBox(width: 5),
                       Text(
-                        '3000',
-                        style: TextStyle(
+                        walletBalance,
+                        style: const TextStyle(
                             fontSize: 16, fontWeight: FontWeight.bold),
                       ),
                     ],
                   ),
-                  SizedBox(height: 10),
+                  const SizedBox(height: 10),
                 ],
               ),
             ),
@@ -154,21 +161,25 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       spreadRadius: 1),
                 ],
               ),
-              child: const Column(
+              child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text('MY BALANCE',
-                      style: TextStyle(fontSize: 12, color: Colors.grey)),
-                  SizedBox(height: 10),
+                  const Text(
+                    'MY BALANCE',
+                    style: TextStyle(fontSize: 12, color: Colors.grey),
+                  ),
+                  const SizedBox(height: 10),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text('₹ 3000',
-                          style: TextStyle(
-                              fontSize: 16, fontWeight: FontWeight.bold)),
+                      Text(
+                        '₹ $amount',
+                        style: const TextStyle(
+                            fontSize: 16, fontWeight: FontWeight.bold),
+                      ),
                     ],
                   ),
-                  SizedBox(height: 10),
+                  const SizedBox(height: 10),
                 ],
               ),
             ),
@@ -187,9 +198,22 @@ class _ProfileScreenState extends State<ProfileScreen> {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              _buildActionButton(Icons.people, Colors.purple, 'Invite Friends'),
-              _buildActionButton(
-                  Icons.history, Colors.orange, 'Income History'),
+              _buildActionButton(Icons.people, Colors.purple, 'Invite Friends',
+                  () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const ReferEarnScreen()),
+                );
+              }),
+              _buildActionButton(Icons.history, Colors.orange, 'Income History',
+                  () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const HistoryScreen()),
+                );
+              }),
             ],
           ),
         ),
@@ -197,17 +221,21 @@ class _ProfileScreenState extends State<ProfileScreen> {
     );
   }
 
-  Widget _buildActionButton(IconData icon, Color color, String label) {
-    return Column(
-      children: [
-        CircleAvatar(
-          radius: 25,
-          backgroundColor: color,
-          child: Icon(icon, color: Colors.white),
-        ),
-        const SizedBox(height: 5),
-        Text(label, style: const TextStyle(fontSize: 12)),
-      ],
+  Widget _buildActionButton(
+      IconData icon, Color color, String label, Function()? onTap) {
+    return InkWell(
+      onTap: onTap,
+      child: Column(
+        children: [
+          CircleAvatar(
+            radius: 25,
+            backgroundColor: color,
+            child: Icon(icon, color: Colors.white),
+          ),
+          const SizedBox(height: 5),
+          Text(label, style: const TextStyle(fontSize: 12)),
+        ],
+      ),
     );
   }
 

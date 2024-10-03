@@ -79,7 +79,7 @@ class _LoginScreenState extends State<LoginScreen> {
       }
     } catch (e) {
       setState(() {
-        _errorMessage = 'Failed to submit referral code: $e';
+        _errorMessage = 'Failed to submit referral code';
       });
     } finally {
       setState(() {
@@ -248,7 +248,7 @@ class _LoginScreenState extends State<LoginScreen> {
       }
     } catch (error) {
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Error occurred: $error')),
+        SnackBar(content: Text('Error occurred')),
       );
     } finally {
       setState(() {

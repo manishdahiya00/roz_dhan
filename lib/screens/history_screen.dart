@@ -48,15 +48,18 @@ class _HistoryScreenState extends State<HistoryScreen> {
       );
 
       if (response.statusCode == 201 && response.data['status'] == 200) {
+        List<Map<String, dynamic>> fetchedHistory =
+            List<Map<String, dynamic>>.from(response.data['history'] ?? []);
+
         setState(() {
-          _historyItems =
-              List<Map<String, dynamic>>.from(response.data['history']);
+          _historyItems = fetchedHistory;
           _isLoading = false;
         });
       } else {
         _showErrorSnackBar("Failed to load history data");
         setState(() {
           _isLoading = false;
+          _historyItems = [];
         });
       }
     } catch (e) {
@@ -100,7 +103,7 @@ class _HistoryScreenState extends State<HistoryScreen> {
               ? const Center(
                   child: Text(
                     "No history available",
-                    style: TextStyle(color: Colors.white, fontSize: 16),
+                    style: TextStyle(color: Colors.black, fontSize: 16),
                   ),
                 )
               : SingleChildScrollView(
