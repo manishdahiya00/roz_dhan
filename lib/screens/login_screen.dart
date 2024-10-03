@@ -359,7 +359,7 @@ class _LoginScreenState extends State<LoginScreen> {
               ),
               SizedBox(height: size.height * 0.04),
               Text(
-                'Welcome to Roz Dhan!',
+                'Welcome to AWin Cash!',
                 style: TextStyle(
                   fontSize: size.width * 0.07,
                   color: Colors.black,

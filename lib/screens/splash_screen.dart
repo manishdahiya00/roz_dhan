@@ -122,7 +122,7 @@ class _SplashScreenState extends State<SplashScreen> {
                     size: size.width * 0.04,
                   ),
                   Text(
-                    ' Roz Dhan',
+                    'AWin Cash',
                     style: TextStyle(
                         fontSize: size.width * 0.04, color: Colors.black),
                   ),
