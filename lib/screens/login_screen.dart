@@ -192,7 +192,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             fixedSize:
                                 Size(MediaQuery.sizeOf(context).width, 50),
                           ),
-                          onPressed: _isSubmitting ? null : _skipReferCode,
+                          onPressed: _skipReferCode,
                           child: const Text(
                             'Skip',
                             style: TextStyle(color: Colors.white),

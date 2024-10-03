@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:roz_dhan/screens/history_screen.dart';
 import 'package:roz_dhan/screens/refer_earn_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
@@ -242,9 +243,24 @@ class _ProfileScreenState extends State<ProfileScreen> {
   Widget _buildMenuItems() {
     return Column(
       children: [
-        _buildMenuItem(Icons.privacy_tip, 'Privacy Policy'),
-        _buildMenuItem(Icons.article, 'Terms And Conditions'),
-        _buildMenuItem(Icons.help, 'Contact Us'),
+        _buildMenuItem(Icons.privacy_tip, 'Privacy Policy', () async {
+          const url = "https://www.example.com";
+          if (!await launchUrl(Uri.parse(url))) {
+            throw 'Could not launch $url';
+          }
+        }),
+        _buildMenuItem(Icons.article, 'Terms And Conditions', () async {
+          const url = "https://www.example.com";
+          if (!await launchUrl(Uri.parse(url))) {
+            throw 'Could not launch $url';
+          }
+        }),
+        _buildMenuItem(Icons.help, 'Contact Us', () async {
+          const url = "https://www.example.com";
+          if (!await launchUrl(Uri.parse(url))) {
+            throw 'Could not launch $url';
+          }
+        }),
       ],
     );
   }
@@ -252,8 +268,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
   Widget _buildMenuItem(
     IconData icon,
     String label,
+    GestureTapCallback onTap,
   ) {
     return ListTile(
+      onTap: onTap,
       leading: Icon(icon),
       title: Text(label),
       trailing: const Icon(Icons.arrow_forward_ios, size: 16),
