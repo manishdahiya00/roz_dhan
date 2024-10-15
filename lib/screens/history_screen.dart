@@ -126,7 +126,7 @@ class _HistoryScreenState extends State<HistoryScreen> {
                             title: Text(
                               item['title'],
                               style: const TextStyle(
-                                color: Colors.white,
+                                color: Colors.black,
                                 fontSize: 18,
                                 fontWeight: FontWeight.bold,
                               ),
@@ -134,14 +134,14 @@ class _HistoryScreenState extends State<HistoryScreen> {
                             subtitle: Text(
                               item['subtitle'],
                               style: const TextStyle(
-                                color: Colors.white70,
+                                color: Colors.black54,
                                 fontSize: 14,
                               ),
                             ),
                             trailing: Text(
                               "₹ ${item['amount']}",
                               style: const TextStyle(
-                                color: Colors.white,
+                                color: Colors.black,
                                 fontSize: 16,
                                 fontWeight: FontWeight.bold,
                               ),

@@ -244,19 +244,21 @@ class _ProfileScreenState extends State<ProfileScreen> {
     return Column(
       children: [
         _buildMenuItem(Icons.privacy_tip, 'Privacy Policy', () async {
-          const url = "https://www.example.com";
+          const url =
+              "https://awin-cash-f8cf3a4624c8.herokuapp.com/privacy.html";
           if (!await launchUrl(Uri.parse(url))) {
             throw 'Could not launch $url';
           }
         }),
         _buildMenuItem(Icons.article, 'Terms And Conditions', () async {
-          const url = "https://www.example.com";
+          const url = "https://awin-cash-f8cf3a4624c8.herokuapp.com/terms.html";
           if (!await launchUrl(Uri.parse(url))) {
             throw 'Could not launch $url';
           }
         }),
         _buildMenuItem(Icons.help, 'Contact Us', () async {
-          const url = "https://www.example.com";
+          const url =
+              "https://awin-cash-f8cf3a4624c8.herokuapp.com/contact.html";
           if (!await launchUrl(Uri.parse(url))) {
             throw 'Could not launch $url';
           }

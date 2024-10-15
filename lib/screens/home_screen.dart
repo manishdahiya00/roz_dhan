@@ -187,6 +187,7 @@ class HomeContentState extends State<HomeContent> {
             fontWeight: FontWeight.bold,
           ),
         ),
+        leading: Icon(Icons.newspaper),
         iconTheme: const IconThemeData(color: Colors.white),
       ),
       body: Column(children: [

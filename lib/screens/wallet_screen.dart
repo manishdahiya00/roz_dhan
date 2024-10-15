@@ -96,6 +96,7 @@ class _WalletScreenState extends State<WalletScreen> {
             color: Colors.white,
           ),
         ),
+        leading: Icon(Icons.wallet),
         backgroundColor: ColorTheme.primaryColor,
         elevation: 4,
         iconTheme: const IconThemeData(color: Colors.white),
